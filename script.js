@@ -476,15 +476,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('Loaded ' + dogDaycares.length + ' dog daycares');
 
-    // Display all daycares on page load
-    displayResults(dogDaycares, null, 'all');
+    // Display initial welcome message
+    resultsContainer.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px;">
+            <h2>Welcome to Dog Daycare Finder UK</h2>
+            <p style="font-size: 18px; margin: 20px 0;">Search our database of ${dogDaycares.length} dog daycares across the UK</p>
+            <p style="font-size: 16px; color: #666;">Enter your postcode above to find dog daycares near you</p>
+            <p style="font-size: 14px; color: #888; margin-top: 10px;">Example: BR3 5UF, SW1, N1 1BA</p>
+        </div>
+    `;
 
     searchButton.addEventListener('click', () => {
         const searchTerm = postcodeInput.value.trim();
         if (!searchTerm) {
-            resultsContainer.innerHTML = '<p>Please enter a postcode.</p>';
+            resultsContainer.innerHTML = '<p style="text-align: center; padding: 20px;">Please enter a postcode.</p>';
             return;
         }
+
+        // Clear the welcome message and show loading
+        resultsContainer.innerHTML = '<p style="text-align: center; padding: 20px;">Searching for dog daycares near ' + searchTerm + '...</p>';
 
         // Get coordinates for the entered postcode
         const searchCoords = getPostcodeCoordinates(searchTerm);
@@ -500,21 +510,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (filteredDaycares.length > 0) {
                 displayResults(filteredDaycares, null, searchTerm);
             } else {
-                resultsContainer.innerHTML = `<p>No exact matches found for "${searchTerm}". Showing all locations within 20km of nearby areas...</p>`;
+                resultsContainer.innerHTML = `<p style="text-align: center; padding: 20px;">No exact matches found for "${searchTerm}". Trying to find nearby areas...</p>`;
                 // Try to find a nearby postcode
                 const nearbyPostcode = findNearbyPostcode(searchTerm);
                 if (nearbyPostcode) {
                     const nearbyCoords = postcodeCoordinates[nearbyPostcode];
                     filterAndDisplayByDistance(nearbyCoords, 20, searchTerm);
                 } else {
-                    displayResults(dogDaycares, null, 'all');
+                    resultsContainer.innerHTML = `<p style="text-align: center; padding: 20px;">Unable to find location "${searchTerm}". Please try another postcode.</p>`;
                 }
             }
             return;
         }
 
-        // Filter by distance - show all with distances, but highlight those within reasonable range
-        filterAndDisplayByDistance(searchCoords, 1000, searchTerm); // 1000km to show all
+        // Filter by distance - default to 20km as requested
+        filterAndDisplayByDistance(searchCoords, 20, searchTerm);
+        
+        // Scroll to results
+        resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     function filterAndDisplayByDistance(searchCoords, maxDistance, searchTerm) {
@@ -535,12 +548,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sort by distance
         daycaresWithDistance.sort((a, b) => a.distance - b.distance);
 
-        // Filter to show only those within reasonable distance (e.g., 50km for practical purposes)
-        // But if none are within 50km, show the closest 10
-        let filteredDaycares = daycaresWithDistance.filter(d => d.distance <= 50);
+        // Filter to show only those within the specified maxDistance (20km by default)
+        let filteredDaycares = daycaresWithDistance.filter(d => d.distance <= maxDistance);
         
         if (filteredDaycares.length === 0) {
-            // No daycares within 50km, show closest 10 with a warning
+            // No daycares within maxDistance, show closest 10 with a warning
             filteredDaycares = daycaresWithDistance.slice(0, 10);
         }
 
@@ -575,26 +587,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let warningHtml = '';
         
         if (searchTerm && searchTerm !== 'all') {
-            // Check if all results are far away (> 50km)
-            const allFar = daycares.every(d => d.distance && d.distance > 50);
-            
             // Add location context for known areas
             let locationContext = '';
             const upperSearch = searchTerm.toUpperCase();
             
-            if (upperSearch.startsWith('IP')) {
-                locationContext = ' (Ipswich/Suffolk area)';
-            } else if (upperSearch.startsWith('RG')) {
-                locationContext = ' (Reading/Berkshire area)';
-            } else if (upperSearch.startsWith('OX')) {
-                locationContext = ' (Oxford area)';
-            } else if (upperSearch.startsWith('BR')) {
+            if (upperSearch.startsWith('BR')) {
                 locationContext = ' (Bromley area)';
             } else if (upperSearch.startsWith('SW')) {
                 locationContext = ' (South West London)';
             } else if (upperSearch.startsWith('SE')) {
                 locationContext = ' (South East London)';
-            } else if (upperSearch.startsWith('N') && !upperSearch.startsWith('NW') && !upperSearch.startsWith('NR')) {
+            } else if (upperSearch.startsWith('N') && !upperSearch.startsWith('NW')) {
                 locationContext = ' (North London)';
             } else if (upperSearch.startsWith('E') && !upperSearch.startsWith('EN')) {
                 locationContext = ' (East London)';
@@ -602,29 +605,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 locationContext = ' (West London)';
             } else if (upperSearch.startsWith('NW')) {
                 locationContext = ' (North West London)';
-            } else if (upperSearch.startsWith('CB')) {
-                locationContext = ' (Cambridge area)';
-            } else if (upperSearch.startsWith('NR')) {
-                locationContext = ' (Norwich area)';
-            } else if (upperSearch.startsWith('CO')) {
-                locationContext = ' (Colchester area)';
             }
             
-            if (allFar) {
-                warningHtml = `
-                    <div style="background: #fff3cd; padding: 15px; border-radius: 5px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
-                        <strong>⚠️ Note:</strong> All dog daycares in our database are more than 50km from ${searchTerm}${locationContext}. 
-                        Showing the ${daycares.length} closest locations. Our database primarily covers the Greater London area.
-                    </div>
-                `;
-                headerHtml = `<h2>Closest ${daycares.length} dog daycares to ${searchTerm}${locationContext}</h2>`;
+            const within20 = daycares.filter(d => d.distance <= 20).length;
+            if (within20 > 0) {
+                headerHtml = `<h2>Found ${within20} dog daycare${within20 !== 1 ? 's' : ''} within 20km of ${searchTerm}${locationContext}</h2>`;
             } else {
-                const within50 = daycares.filter(d => d.distance <= 50).length;
-                if (within50 > 0) {
-                    headerHtml = `<h2>Found ${within50} dog daycare${within50 !== 1 ? 's' : ''} within 50km of ${searchTerm}${locationContext}</h2>`;
-                } else {
-                    headerHtml = `<h2>Showing closest dog daycares to ${searchTerm}${locationContext}</h2>`;
-                }
+                headerHtml = `<h2>Showing closest dog daycares to ${searchTerm}${locationContext}</h2>`;
             }
         } else {
             headerHtml = `<h2>Showing all ${daycares.length} dog daycares</h2>`;
@@ -633,14 +620,18 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsContainer.innerHTML = warningHtml + headerHtml + daycares
             .map(daycare => {
                 let distanceText = '';
+                let cardClass = 'daycare-card';
                 if (daycare.distance !== undefined) {
-                    const distanceClass = daycare.distance > 50 ? 'distance distance-far' : 'distance';
-                    const distanceWarning = daycare.distance > 100 ? ' ⚠️' : '';
-                    distanceText = `<p class="${distanceClass}"><strong>Distance:</strong> ${daycare.distance.toFixed(1)} km${distanceWarning}</p>`;
+                    // Highlight cards within 20km
+                    if (daycare.distance <= 20) {
+                        cardClass = 'daycare-card nearby';
+                    }
+                    const distanceClass = daycare.distance > 20 ? 'distance distance-far' : 'distance';
+                    distanceText = `<p class="${distanceClass}"><strong>Distance:</strong> ${daycare.distance.toFixed(1)} km</p>`;
                 }
                 
                 return `
-                    <div class="daycare-card">
+                    <div class="${cardClass}">
                         <h3>${daycare.name}</h3>
                         ${distanceText}
                         <p><strong>Address:</strong> ${daycare.full_address || 'Address not available'}</p>

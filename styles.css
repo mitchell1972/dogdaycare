@@ -78,6 +78,12 @@ h2 {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+}
+
+.daycare-card.nearby {
+    border: 2px solid #27ae60;
+    background: linear-gradient(to right, #f0fff4 0%, white 100%);
 }
 
 .daycare-card:hover {
