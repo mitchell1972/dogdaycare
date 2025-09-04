@@ -1,160 +1,138 @@
-# Dog Day Care Directory Website
+# Dog Daycare Finder 🐕
 
-A professional, SEO-optimized directory website for dog daycare centers in London. This website helps pet owners find the best dog daycare services with comprehensive information, reviews, and contact details.
+A web application to find dog daycare centers in the UK with distance-based filtering. Enter any UK postcode to find the nearest dog daycare facilities with accurate distance calculations.
 
 ## Features
 
-- **Responsive Design**: Fully responsive design that works on desktop, tablet, and mobile devices
-- **Search Functionality**: Search dog daycares by name or location
-- **Filter Options**: Filter by rating and London area
-- **SEO Optimized**: Comprehensive SEO implementation with meta tags, sitemap, and robots.txt
-- **User-Friendly Interface**: Clean, modern design with intuitive navigation
-- **Contact Form**: Easy way for users to get in touch
+- 🗺️ **Distance-based search**: Find dog daycares within a specified radius of any UK postcode
+- 📍 **Comprehensive coverage**: Database of 600+ dog daycare centers primarily in Greater London and surrounding areas
+- 📏 **Accurate distance calculation**: Uses Haversine formula for precise distance measurements
+- 🎯 **Smart filtering**: Shows nearby options or closest available with appropriate warnings
+- 📱 **Responsive design**: Works on desktop, tablet, and mobile devices
 
-## SEO Optimization
+## Live Demo
 
-This website is heavily optimized for search engines with:
+Visit: [Your Vercel URL will be here after deployment]
 
-- **Meta Tags**: Comprehensive meta description and keywords targeting dog daycare-related search terms
-- **Open Graph Tags**: Social media optimization for Facebook and Twitter
-- **Structured Data**: Proper HTML structure for better search engine crawling
-- **Sitemap**: XML sitemap for search engine indexing
-- **Robots.txt**: Proper crawl directives for search engines
-- **Mobile Optimization**: Fully responsive design for mobile-first indexing
+## Local Development
 
-## Target Keywords
+1. Clone the repository:
+```bash
+git clone https://github.com/mitchell1972/dogdaycare.git
+cd dogdaycare
+```
 
-The website targets over 100 dog daycare-related keywords including:
-- dog day care
-- dog daycare near me  
-- puppy daycare near me
-- overnight dog boarding
-- dog holiday care
-- best dog daycare near me
-- And many more...
+2. Open `index.html` in your browser or use a local server:
+```bash
+# Using Python
+python -m http.server 8000
 
-## Installation & Setup
+# Using Node.js
+npx http-server
+```
 
-1. **Clone or download the project files**
+3. Visit `http://localhost:8000` in your browser
+
+## Deployment Setup
+
+### Prerequisites
+
+1. A [Vercel account](https://vercel.com/signup)
+2. A GitHub account with this repository
+
+### Setting up Vercel Deployment
+
+1. **Connect to Vercel:**
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Click "Add New Project"
+   - Import your GitHub repository `mitchell1972/dogdaycare`
+   - Click "Deploy"
+
+2. **Get Vercel Tokens:**
+   - Go to [Vercel Account Settings](https://vercel.com/account/tokens)
+   - Create a new token and save it
+
+3. **Get Project and Org IDs:**
    ```bash
-   git clone <repository-url>
-   cd DogCentreDirectory
+   # Install Vercel CLI
+   npm i -g vercel
+   
+   # Link your project
+   vercel link
+   
+   # Get the IDs from .vercel/project.json
+   cat .vercel/project.json
    ```
 
-2. **Open the website**
-   Simply open `index.html` in a web browser or deploy to a web server.
+4. **Configure GitHub Secrets:**
+   
+   Go to your GitHub repository → Settings → Secrets and variables → Actions
+   
+   Add the following secrets:
+   - `VERCEL_TOKEN`: Your Vercel token from step 2
+   - `VERCEL_ORG_ID`: Your org ID from step 3
+   - `VERCEL_PROJECT_ID`: Your project ID from step 3
 
-3. **Customize for production**
-   - Update domain references in `index.html`, `sitemap.xml`, and `robots.txt`
-   - Add actual favicon images
-   - Add social media preview images
-   - Update contact form to connect to your email service
+### CI/CD Pipeline
 
-## File Structure
+The GitHub Actions workflow automatically:
+- Deploys preview builds for pull requests
+- Deploys to production when pushing to `main` branch
+
+## Project Structure
 
 ```
-DogCentreDirectory/
+dogdaycare/
 ├── index.html          # Main HTML file
-├── styles.css          # CSS styles
-├── script.js           # JavaScript functionality
-├── robots.txt          # Search engine directives
-├── sitemap.xml         # XML sitemap
-└── README.md           # This file
+├── script.js           # JavaScript logic for search and filtering
+├── styles.css          # Styling
+├── data.js            # Database of dog daycare centers
+├── vercel.json        # Vercel configuration
+├── .github/
+│   └── workflows/
+│       └── deploy.yml # GitHub Actions CI/CD workflow
+└── README.md          # This file
 ```
 
-## Customization
+## How It Works
 
-### Adding More Dog Daycares
+1. **Postcode Input**: Users enter a UK postcode
+2. **Coordinate Lookup**: The app maps the postcode to latitude/longitude coordinates
+3. **Distance Calculation**: Calculates distance to all daycare centers using Haversine formula
+4. **Smart Display**: Shows results sorted by distance with visual indicators:
+   - Blue highlight: Within 50km
+   - Yellow highlight: Over 50km
+   - Warning icon: Over 100km
 
-Edit the `dogDaycares` array in `script.js` to add more entries:
+## Supported Postcodes
 
-```javascript
-{
-    name: "Daycare Name",
-    rating: 4.5,
-    reviews: 25,
-    address: "Full address here",
-    phone: "+44 123 456 7890",
-    website: "https://website.com",
-    hours: {
-        Monday: "8am-6pm",
-        Tuesday: "8am-6pm",
-        // ... etc
-    },
-    area: "Central" // Central, North, South, East, West
-}
-```
+The application includes coordinate mappings for:
+- All London postcodes (SW, SE, N, E, W, NW, EC, WC)
+- Greater London areas (BR, CR, DA, EN, HA, IG, KT, RM, TW, UB)
+- Surrounding regions (AL, CB, CM, CO, HP, IP, NR, OX, RG, SL, SS, WD)
 
-### Styling Changes
+## Technologies Used
 
-Modify `styles.css` to change the appearance:
-- Colors and gradients
-- Font sizes and styles
-- Layout and spacing
-- Responsive breakpoints
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Vercel for hosting
+- GitHub Actions for CI/CD
 
-### SEO Updates
+## Contributing
 
-Update SEO elements in `index.html`:
-- Meta description and keywords
-- Open Graph tags
-- Twitter card tags
-- Geo tags for local SEO
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Performance Features
-
-- **Fast Loading**: Optimized CSS and JavaScript
-- **Responsive Images**: Ready for image optimization
-- **Smooth Animations**: CSS transitions and animations
-- **Accessibility**: Proper semantic HTML structure
-
-## Deployment
-
-### Local Development
-Simply open `index.html` in a web browser.
-
-### Web Server Deployment
-Upload all files to your web server. Ensure:
-- All file paths are correct
-- SSL certificate is installed (HTTPS)
-- Domain is properly configured
-
-### CDN Deployment
-For better performance, consider:
-- Using a CDN for static assets
-- Implementing browser caching
-- Enabling GZIP compression
-
-## Maintenance
-
-### Regular Updates
-- Keep dog daycare information current
-- Monitor and respond to contact form submissions
-- Update SEO keywords as needed
-- Check for broken links regularly
-
-### Analytics
-Consider adding:
-- Google Analytics for traffic monitoring
-- Google Search Console for SEO performance
-- Heatmap tools for user behavior analysis
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
 This project is open source and available under the MIT License.
 
-## Support
+## Contact
 
-For questions or support, please use the contact form on the website or create an issue in the project repository.
+Mitchell Agoma - [@mitchell1972](https://github.com/mitchell1972)
 
----
-
-**Note**: Remember to replace placeholder URLs and images with your actual domain and assets before deploying to production.
+Project Link: [https://github.com/mitchell1972/dogdaycare](https://github.com/mitchell1972/dogdaycare)
