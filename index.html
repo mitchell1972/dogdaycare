@@ -3,18 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Daycare and Cat Boarding Finder - Find the Best Pet Care Near You</title>
-    <meta name="description" content="Find the best dog daycare, puppy daycare, cat boarding, and other pet care services near you. Search by postcode to find affordable and luxury options for your furry friends.">
+    <title>Dog Daycare Near Me | Puppy Daycare & Cat Boarding | Find Best Pet Care UK</title>
+    <meta name="description" content="Find dog daycare near me, puppy daycare, cat boarding & overnight dog boarding. Compare 545+ dog daycares with prices. Cheap & luxury options. Same day booking available.">
     <meta name="keywords" content="dog day care, dog daycare near me, puppy daycare near me, puppy daycare, cat daycare near me, daycare for dogs, overnight dog boarding, dog holiday care, temporary cat boarding near me, best dog daycare near me, overnight doggy daycare, animal daycare near me, doggie day camp, dog daycare prices, cheap dog daycare near me, dog daycare near me prices, dog day camp near me, doggy daycare cost, dog camps near me, doggy daycare near me prices, private dog daycare near me, dog overnight stay, dog creche near me, bow wow dog daycare, dog boarding near me overnight, overnight doggy daycare near me, dog boarding that doesn t require neutering near me, cat boarding facilities near me, rover dog daycare, doggy daycare for puppies, dog daycare and boarding near me, cat boarding cost, small dog daycare near me, doggie day cares near me, dog daycare overnight near me, doggy daycare prices near me, affordable doggy daycare near me, affordable dog daycare near me, dog sitting prices per day, rover doggy day care, kitty daycare near me, dog daycare that doesn t require neutering near me, weekend dog daycare, dog overnight daycare near me, overnight dog daycare near me, dog daycare and boarding, dog dog daycare, doggy day cares near me, weekend dog boarding, dog daycare prices near me, dog daycare with transportation near me, cat boarding services near me, small dog daycare, in home dog daycare near me, same day dog boarding, dog overnight stay near me, eddie's doggy daycare, dog holiday care near me, bow wow daycare, playful pack dog daycare, dog daycare with pool, local doggy daycare, doggy daycare overnight near me, cheap dog daycare, best doggie day care, average dog boarding cost, dog day boarding, doggy daycare near me overnight, cat boarding prices, dog day care centre near me, doggie camp, best dog daycare, camp bow wow daycare, puppy daycare cost, cost of doggy daycare near me, cat boarding services, dog boarding for puppies, dog daycare for vacation, dog boarding prices per day, doggy daycare for reactive dogs, urban pooch daycare, long stay dog boarding, holiday dog sitters near me, open a dog daycare, luxury daycare near me, dog daycare that don t require neutering, in home dog daycare, pet daycare near me for dogs, a doggie day, bark doggie daycare, dog daycare monthly cost, red dog daycare, luxury dog daycare, stay dog daycare, dog boarding and daycare, doggie care, dog sitters for holidays, private dog daycare, weekend dog sitter, animal day care">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Dog Daycare Near Me | Find 545+ Pet Care Centers UK">
+    <meta property="og:description" content="Find dog daycare, puppy daycare, cat boarding near you. Compare prices, read reviews. Overnight & weekend boarding available.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dogdaycare.vercel.app">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dogdaycare.vercel.app">
+    
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Dog Daycare Finder UK",
+      "url": "https://dogdaycare.vercel.app",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://dogdaycare.vercel.app/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "description": "Find dog daycare near me, puppy daycare, overnight dog boarding, cat boarding facilities. Compare prices and services across 545+ UK locations."
+    }
+    </script>
+    
+    <!-- Additional Structured Data for Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Pet Care Directory",
+      "provider": {
+        "@type": "Organization",
+        "name": "UK Dog Daycare Directory"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Pet Care Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Dog Daycare",
+              "description": "Daily dog daycare services"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Puppy Daycare",
+              "description": "Specialized puppy daycare services"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Overnight Dog Boarding",
+              "description": "Overnight and weekend dog boarding"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cat Boarding",
+              "description": "Cat boarding and daycare services"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Dog Daycare Finder</h1>
-    <div class="search-container">
-        <input type="text" id="postcodeInput" placeholder="Enter postcode">
-        <button id="searchButton">Search</button>
-    </div>
-    <div id="results"></div>
+    <header>
+        <h1>Dog Daycare Near Me - Find Best Pet Care in Your Area</h1>
+        <p class="tagline">Search 545+ dog daycares, puppy daycare centers, and cat boarding facilities across the UK</p>
+    </header>
+    
+    <main>
+        <section class="search-section">
+            <h2>Find Dog Daycare & Pet Boarding Near You</h2>
+            <div class="search-container">
+                <label for="postcodeInput" class="sr-only">Enter your postcode to find dog daycare near me</label>
+                <input type="text" id="postcodeInput" placeholder="Enter postcode (e.g., BR3 5UF)" aria-label="Enter postcode to find dog daycare">
+                <button id="searchButton" aria-label="Search for dog daycare">Search Dog Daycares</button>
+            </div>
+            <p class="search-hint">Find dog daycare prices, overnight dog boarding, weekend dog sitter services near you</p>
+        </section>
+
+        <div id="results" aria-live="polite"></div>
+
+        <section class="seo-content">
+            <h2>Dog Daycare Services Near Me</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Dog Daycare Near Me</h3>
+                    <p>Find trusted dog daycare centers in your local area. Our directory includes 545+ verified dog daycares across the UK with transparent dog daycare prices and availability for same day dog boarding.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Puppy Daycare Near Me</h3>
+                    <p>Specialized puppy daycare services for young dogs. Find doggy daycare for puppies with trained staff, safe play areas, and puppy socialization programs. Check puppy daycare cost and availability.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Overnight Dog Boarding</h3>
+                    <p>Need overnight doggy daycare? Find dog boarding near me overnight, weekend dog boarding, and long stay dog boarding options. Many facilities offer dog overnight stay near me with 24/7 care.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Cat Boarding Services</h3>
+                    <p>Discover cat daycare near me and temporary cat boarding near me. Compare cat boarding facilities near me, cat boarding cost, and cat boarding prices. Find kitty daycare near me for your feline friends.</p>
+                </div>
+            </div>
+
+            <h2>Affordable & Luxury Pet Care Options</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>Cheap Dog Daycare Near Me</h3>
+                    <p>Looking for affordable doggy daycare near me? Compare dog daycare near me prices to find cheap dog daycare without compromising on quality. Check dog sitting prices per day and doggy daycare cost in your area.</p>
+                </div>
+                <div class="info-item">
+                    <h3>Luxury Dog Daycare</h3>
+                    <p>Premium luxury daycare near me with spa services, dog daycare with pool, and personalized care. Find luxury dog daycare and private dog daycare near me for pampered pets.</p>
+                </div>
+                <div class="info-item">
+                    <h3>Specialized Services</h3>
+                    <p>Find dog daycare that doesn't require neutering near me, doggy daycare for reactive dogs, small dog daycare near me, and in home dog daycare near me. Weekend dog sitter and holiday dog sitters near me available.</p>
+                </div>
+                <div class="info-item">
+                    <h3>Popular Chains</h3>
+                    <p>Locate popular chains like bow wow dog daycare, camp bow wow daycare, rover dog daycare, eddie's doggy daycare, bark doggie daycare, and urban pooch daycare in your area.</p>
+                </div>
+            </div>
+
+            <h2>Dog Daycare Prices & Costs</h2>
+            <p>Understanding dog daycare prices near me is essential for pet owners. Average dog boarding cost varies by location and services. Compare doggy daycare prices near me, dog daycare monthly cost, and dog boarding prices per day. Find affordable dog daycare near me that fits your budget.</p>
+
+            <h2>Types of Pet Care Services</h2>
+            <ul class="service-list">
+                <li><strong>Daycare for dogs</strong> - Daily care while you're at work</li>
+                <li><strong>Dog holiday care</strong> - Care during your vacations</li>
+                <li><strong>Dog creche near me</strong> - Socialization and play groups</li>
+                <li><strong>Doggie day camp</strong> - Activity-based daycare programs</li>
+                <li><strong>Dog day care centre near me</strong> - Full-service facilities</li>
+                <li><strong>Animal daycare near me</strong> - Multi-pet care options</li>
+                <li><strong>Dog daycare with transportation near me</strong> - Pick-up and drop-off services</li>
+                <li><strong>Weekend dog daycare</strong> - Saturday and Sunday care</li>
+                <li><strong>Dog daycare for vacation</strong> - Extended stay options</li>
+                <li><strong>Dog boarding for puppies</strong> - Age-appropriate care</li>
+            </ul>
+
+            <h2>Find Local Dog Daycare</h2>
+            <p>Search for local doggy daycare, doggie day cares near me, and best dog daycare near me. Our comprehensive directory helps you find dog daycare and boarding near me, overnight dog daycare near me, and dog daycare overnight near me. Whether you need a weekend dog sitter, dog sitters for holidays, or regular doggie care, we help you find the perfect match.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dog Daycare Finder UK - Find dog daycare near me, puppy daycare, cat boarding services</p>
+    </footer>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
