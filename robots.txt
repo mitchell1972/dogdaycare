@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Crawl delay (requests per second)
+Crawl-delay: 1
+
+# Allow search engines to index all pages
+Disallow:
+
+# Allow search engines to follow all links
+Allow: /*
+
+# Optimize for search engine crawling
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Optimize for mobile crawling
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot-Mobile
+Allow: /

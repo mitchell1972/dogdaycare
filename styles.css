@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #34495e;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#postcodeInput {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+#postcodeInput:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+#searchButton {
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#searchButton:hover {
+    background-color: #2980b9;
+}
+
+#results {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.daycare-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.daycare-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.daycare-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.daycare-card p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.daycare-card p strong {
+    color: #333;
+    margin-right: 5px;
+}
+
+.daycare-card a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.daycare-card a:hover {
+    text-decoration: underline;
+}
+
+.distance {
+    background-color: #e8f4f8;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.distance-far {
+    background-color: #fff3cd;
+    border-left: 3px solid #ffc107;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+    }
+    
+    #searchButton {
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .daycare-card {
+        padding: 15px;
+    }
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* No results message */
+#results > p {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1em;
+    color: #666;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
