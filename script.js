@@ -467,6 +467,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const postcodeInput = document.getElementById('postcodeInput');
     const resultsContainer = document.getElementById('results');
 
+    // Check if dogDaycares is loaded
+    if (typeof dogDaycares === 'undefined') {
+        console.error('dogDaycares data not loaded!');
+        resultsContainer.innerHTML = '<p style="color: red;">Error: Data not loaded. Please refresh the page.</p>';
+        return;
+    }
+
+    console.log('Loaded ' + dogDaycares.length + ' dog daycares');
+
     // Display all daycares on page load
     displayResults(dogDaycares, null, 'all');
 
